@@ -72,34 +72,34 @@ public class DbAssistant {
     }
 
     public static ComboItem[] loadUsers() {
-        return loadOnSelect("select user_id,concat(first_name,' ',last_name) from user");
+        return loadOnSelect("select userID,concat(firstName,' ',lastName) from mats.usr");
     }
     
-    public static ComboItem[] loadPatients() {
-        return loadOnSelect("select patient_id,concat(last_name,' ',substr(first_name,1,1),'.',substr(second_name,1,1),'.') from patient");
-    }
-
-    public static ComboItem[] loadPathologies() {
-        return loadOnSelect("select pathology_id, pathology from pathology");
-    }
-    
-    public static ComboItem[] loadTreatments() {
-        return loadOnSelect(
-                "select treatment_id,concat(last_name,' (',DATE_FORMAT(date_in,'" + DD_MM_YYYY_HH_MI_SS 
-                        + "'),'...',ifnull(DATE_FORMAT(date_out,'" + DD_MM_YYYY_HH_MI_SS + "'),''),')') "
-                        + "from treatment,patient where treatment.patient_id=patient.patient_id");
-    }
-    
-    public static ComboItem[] loadDiagnoses() {
-        return loadOnSelect("select diagnose_id,concat((select concat(last_name,' ',substr(first_name,1,1),'.',substr(second_name,1,1),'.')"
-                + " from patient where patient_id=diagnose.patient_id),'(',diagnose,')') ptnt from diagnose");
-    }
-
-    public static List loadAllWhereFroms() {
-        return loadListFromComboItems("select distinct 0,where_from from treatment order by where_from");
-    }
-
-    public static List loadAllDirections() {
-        return loadListFromComboItems("select distinct 0,directed from treatment order by where_from");
-    }
+//    public static ComboItem[] loadPatients() {
+//        return loadOnSelect("select patient_id,concat(last_name,' ',substr(first_name,1,1),'.',substr(second_name,1,1),'.') from patient");
+//    }
+//
+//    public static ComboItem[] loadPathologies() {
+//        return loadOnSelect("select pathology_id, pathology from pathology");
+//    }
+//    
+//    public static ComboItem[] loadTreatments() {
+//        return loadOnSelect(
+//                "select treatment_id,concat(last_name,' (',DATE_FORMAT(date_in,'" + DD_MM_YYYY_HH_MI_SS 
+//                        + "'),'...',ifnull(DATE_FORMAT(date_out,'" + DD_MM_YYYY_HH_MI_SS + "'),''),')') "
+//                        + "from treatment,patient where treatment.patient_id=patient.patient_id");
+//    }
+//    
+//    public static ComboItem[] loadDiagnoses() {
+//        return loadOnSelect("select diagnose_id,concat((select concat(last_name,' ',substr(first_name,1,1),'.',substr(second_name,1,1),'.')"
+//                + " from patient where patient_id=diagnose.patient_id),'(',diagnose,')') ptnt from diagnose");
+//    }
+//
+//    public static List loadAllWhereFroms() {
+//        return loadListFromComboItems("select distinct 0,where_from from treatment order by where_from");
+//    }
+//
+//    public static List loadAllDirections() {
+//        return loadListFromComboItems("select distinct 0,directed from treatment order by where_from");
+//    }
 }

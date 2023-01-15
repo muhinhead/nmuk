@@ -29,7 +29,7 @@ public class AboutDialog extends PopupDialog {
     private JButton closeBtn;
 
     public AboutDialog() {
-        super(null, "Учет инсультов", null);
+        super(null, "Material Inventory", null);
         //AIBclient.setWindowIcon(this, "aib.png");
     }
 
@@ -44,21 +44,21 @@ public class AboutDialog extends PopupDialog {
         JPanel main = new TexturedPanel(BACKGROUNDIMAGE);
         getContentPane().add(main, BorderLayout.CENTER);
         ImagePanel img = new ImagePanel(GeneralUtils.loadImage(BACKGROUNDIMAGE));
-        this.setMinimumSize(new Dimension(img.getWidth(), img.getHeight() + 25));
+        this.setMinimumSize(new Dimension(img.getWidth()+2, img.getHeight() + 30));
         closeBtn = new JButton(closeAction = new AbstractAction("Ok") {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
 
-        JLabel version = new JLabel("Версия " + TheLaserShop.version);
+        JLabel version = new JLabel("Version " + TheLaserShop.version);
         version.setBounds(170, 60, version.getPreferredSize().width, version.getPreferredSize().height);
         version.setForeground(fg);
         main.add(version);
 
-        JLabel devBy = new JLabel("Николай Мухин (mukhin.nick@gmail.com) (c) 2017");
+        JLabel devBy = new JLabel("Nick Mukhin(mukhin.nick@gmail.com) (c) 2023");
         devBy.setFont(devBy.getFont().deriveFont(Font.ITALIC,10));
-        devBy.setBounds(41, 105, devBy.getPreferredSize().width, devBy.getPreferredSize().height);
+        devBy.setBounds(41, 110, devBy.getPreferredSize().width, devBy.getPreferredSize().height);
         devBy.setForeground(fg);
         main.add(devBy);
         
@@ -86,7 +86,7 @@ public class AboutDialog extends PopupDialog {
 //        str4.setForeground(fg);
 //        main.add(str4);
 
-    closeBtn.setBounds(350, 278,
+    closeBtn.setBounds(300, 100,
                 closeBtn.getPreferredSize().width,
                 closeBtn.getPreferredSize().height);
 

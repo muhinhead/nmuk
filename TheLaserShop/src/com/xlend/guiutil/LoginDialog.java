@@ -118,7 +118,7 @@ public class LoginDialog extends PopupDialog {
         int yShift = 45;
         int xShift = 30;
 
-        this.setMinimumSize(new Dimension(dashWidth + insets.left + insets.right,
+        this.setMinimumSize(new Dimension(dashWidth + insets.left + insets.right - 15,
                 dashHeight + insets.top + insets.bottom + 20));
         LayerPanel layers = new LayerPanel();
         layers.add(controlsPanel, JLayeredPane.DEFAULT_LAYER);
@@ -153,14 +153,14 @@ public class LoginDialog extends PopupDialog {
 
     private void buildMenu() {
         JMenuBar bar = new JMenuBar();
-        JMenu m = new JMenu("Настройки");
-        m.add(new JMenuItem(new AbstractAction("Соединение с БД") {
+        JMenu m = new JMenu("Settings");
+        m.add(new JMenuItem(new AbstractAction("DB connection") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TheLaserShop.configureConnection();
             }
         }));
-        m.add(GeneralUtils.appearanceMenu("Тема оформления", this));
+        m.add(GeneralUtils.appearanceMenu("Theme", this));
         bar.add(m);
 //        m.add(new JMenuItem(new AbstractAction("Export data") {
 //            @Override
@@ -174,7 +174,7 @@ public class LoginDialog extends PopupDialog {
 //            }
 //        }));
 //        bar.add(m);
-        bar.add(new JMenuItem(new AbstractAction("О программе") {
+        bar.add(new JMenuItem(new AbstractAction("About") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AboutDialog();

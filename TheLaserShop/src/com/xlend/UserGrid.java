@@ -34,8 +34,8 @@ public class UserGrid extends AbstractGridAdapter {
     public UserGrid(IMessageSender exchanger) throws RemoteException {
         super(exchanger, 
 //                "select * from mats.usr",
-                "select userID \"ID\", firstName \"Имя\", "
-                + "lastName \"Фамилия\", login \"Login\" , case when isAdmin=1 then 'Yes' else 'No' end \"Администратор\" "
+                "select userID \"ID\", firstName \"First Name\", "
+                + "lastName \"Last Name\", login \"Login\" , case when isAdmin=1 then 'Yes' else 'No' end \"Superuser\" "
                 + "from mats.usr", 
                 maxWidths, false);
     }
@@ -51,12 +51,12 @@ public class UserGrid extends AbstractGridAdapter {
 
     @Override
     protected AbstractAction addAction() {
-        return new AbstractAction("Добавить") {
+        return new AbstractAction("Add") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     GenericEditDialog<EditUserPanel> dlg
-                            = new GenericEditDialog<EditUserPanel>(EditUserPanel.class, "Добавить пользователя", null);
+                            = new GenericEditDialog<EditUserPanel>(EditUserPanel.class, "Add User", null);
                     if (dlg.isOkPressed()) {
                         GeneralFrame.updateGrid(exchanger, getTableView(),
                                 getTableDoc(), getSelect(), null, getPageSelector().getSelectedIndex());
@@ -71,7 +71,7 @@ public class UserGrid extends AbstractGridAdapter {
 
     @Override
     protected AbstractAction editAction() {
-        return new AbstractAction("Редактировать") {
+        return new AbstractAction("Edit") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int id = getSelectedID();
@@ -79,7 +79,7 @@ public class UserGrid extends AbstractGridAdapter {
                     try {
                         Mats_usr user = (Mats_usr) exchanger.loadDbObjectOnID(Mats_usr.class, id);
                         GenericEditDialog<EditUserPanel> dlg
-                                = new GenericEditDialog<EditUserPanel>(EditUserPanel.class, "Редактировать пользователя", user);
+                                = new GenericEditDialog<EditUserPanel>(EditUserPanel.class, "Edit User", user);
                         if (dlg.isOkPressed()) {
                             GeneralFrame.updateGrid(exchanger, getTableView(),
                                     getTableDoc(), getSelect(), id, getPageSelector().getSelectedIndex());
@@ -104,9 +104,9 @@ public class UserGrid extends AbstractGridAdapter {
                         Mats_usr user = (Mats_usr) exchanger.loadDbObjectOnID(Mats_usr.class, id);
                         if (user != null) {
                             if (user.getPK_ID().intValue() == TheLaserShop.getCurrentUser().getPK_ID().intValue()) {
-                                GeneralUtils.errMessageBox("Увы!", "Вы не можете удалить себя!");
-                            } else if (GeneralUtils.yesNo("Внимание!",
-                                    "Уверены, что хотите удалить этого сотрудника?") == JOptionPane.YES_OPTION) {
+                                GeneralUtils.errMessageBox("No!", "You cannot delete yourself!");
+                            } else if (GeneralUtils.yesNo("Attention!",
+                                    "Are you sure?") == JOptionPane.YES_OPTION) {
 //                                if (DbAssistant.findProjectByUserID(user.getPK_ID()) != null) {
 //                                    GeneralUtils.errMessageBox("Sorry!", "Projects found created or modified by this user");
 //                                } else {

@@ -48,29 +48,29 @@ public class EditUserPanel extends RecordEditPanel {
     protected void fillContent() {
         String[] titles = new String[]{
                 "ID", //"Position:",
-                "Имя:", //"Middle Name:", 
-                "Фамилия:",
-                "логин:",
-                "Пароль:",// "re-enter password:"
+                "First Name:", //"Middle Name:", 
+                "Last Name:",
+                "Login:",
+                "Password:",// "re-enter password:"
                 ""
         };
         JComponent edits[] = new JComponent[]{
             getGridPanel(new JComponent[]{idField = new JTextField(),
-                new JLabel("Должность:", SwingConstants.RIGHT),
+                new JLabel("Position:", SwingConstants.RIGHT),
                 positionField = new JTextField()
             }),
             getGridPanel(new JComponent[]{firstNameField = new JTextField(),
-                new JLabel("Отчество:", SwingConstants.RIGHT),
+                new JLabel("MIssle Name:", SwingConstants.RIGHT),
                 middleNameField = new JTextField()
             }),
             lastNameField = new JTextField(30),
             getGridPanel(new JComponent[]{loginField = new JTextField(20),new JPanel()}),
             getBorderPanel(new JComponent[]{
                 pwdField1 = new JPasswordField(20),
-                new JLabel("повторить пароль:", SwingConstants.RIGHT),
+                new JLabel("repeat the password:", SwingConstants.RIGHT),
                 pwdField2 = new JPasswordField(20)
             }),
-            getBorderPanel(new JComponent[]{isAdminCB = new JCheckBox("администратор")})
+            getBorderPanel(new JComponent[]{isAdminCB = new JCheckBox("Administrator")})
         };
         idField.setEnabled(false);
 
@@ -81,21 +81,21 @@ public class EditUserPanel extends RecordEditPanel {
     public void loadData() {
         Mats_usr user = (Mats_usr) getDbObject();
         if (downPanel == null) {
-            String hdr = "Дополнительная информация";
+            String hdr = "Additional Info";
             downPanel = new MyJideTabbedPane();
             downPanel.setPreferredSize(new Dimension(downPanel.getPreferredSize().width, 300));
             try {
                 if (user == null) {
-                    JLabel lbl = new JLabel("Для добавления доп. информации сначала сохраните эту карточку", SwingConstants.CENTER);
+                    JLabel lbl = new JLabel("Before adding the file save this record", SwingConstants.CENTER);
                     lbl.setForeground(Color.blue);
                     lbl.setFont(lbl.getFont().deriveFont(Font.BOLD, 16));
                     downPanel.add(lbl, hdr);
                 } else {
-                    downPanel.add(new AdditionalFilesGrid(getExchanger(), "user_id", user.getPK_ID()),"Файлы");
+                    downPanel.add(new AdditionalFilesGrid(getExchanger(), "userID", user.getPK_ID()),"Files");
                 }
             } catch (RemoteException ex) {
                 ExchangeFactory.getPropLogEngine().log(ex);
-                    GeneralUtils.errMessageBox(GeneralUtils.ERROR, ex.getMessage());
+                GeneralUtils.errMessageBox(GeneralUtils.ERROR, ex.getMessage());
             }
             add(downPanel, BorderLayout.CENTER);
         }

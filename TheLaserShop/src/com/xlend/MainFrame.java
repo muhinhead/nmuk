@@ -23,11 +23,11 @@ public class MainFrame extends GeneralFrame {
 
     public static MainFrame instance;
     private static String[] sheetList = new String[]{
-        "Пациенты",
-        "Лечение",
-        "Диагнозы",
-        "Патологии",
-        "Пользователи"
+        "Users"
+//        ,"Лечение"
+//        ,"Диагнозы"
+//        ,"Патологии"
+//        ,"Пользователи"
     };
 //    private GeneralGridPanel patientsPanel;
 //    private GeneralGridPanel treatmentsPanel;

@@ -142,7 +142,7 @@ public abstract class GeneralFrame extends JFrame implements WindowListener {
 //        filterButton.setToolTipText("Filter on fragment");
 //        filterButton.addActionListener(getFilterAction());
             sharePopup = new JPopupMenu();
-            sharePopup.add(new JMenuItem(new AbstractAction("Вывод в HTML") {
+            sharePopup.add(new JMenuItem(new AbstractAction("Output to HTML") {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     GeneralGridPanel grid = getActiveGrid();
@@ -152,7 +152,7 @@ public abstract class GeneralFrame extends JFrame implements WindowListener {
                 }
 
             }));
-            sharePopup.add(new JMenuItem(new AbstractAction("Вывод в PDF") {
+            sharePopup.add(new JMenuItem(new AbstractAction("Output to PDF") {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     GeneralGridPanel grid = getActiveGrid();
@@ -162,7 +162,7 @@ public abstract class GeneralFrame extends JFrame implements WindowListener {
                 }
 
             }));
-            sharePopup.add(new JMenuItem(new AbstractAction("Вывод в CSV") {
+            sharePopup.add(new JMenuItem(new AbstractAction("Output to CSV") {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     GeneralGridPanel grid = getActiveGrid();

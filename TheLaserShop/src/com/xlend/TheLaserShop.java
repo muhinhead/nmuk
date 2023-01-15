@@ -130,11 +130,12 @@ public class TheLaserShop {
         JSpinner portSpinner = new JSpinner(new SpinnerNumberModel(
                 vals.length > 1 ? new Integer(vals[1]) : 1099, 0, 65536, 1));
         JTextField dbConnectionField = new JTextField(ExchangeFactory.getPropLogEngine().getProps()
-                .getProperty("JDBCconnection", "jdbc:mysql://"
+                //jdbc:derby://localhost:1527//home/nick/Derby/TheLaserShop
+                .getProperty("JDBCconnection", "jdbc:derby://"
                         + defaultServerIP
-                        + "/insultes?useUnicode=true&characterEncoding=UTF8"));
+                        + "/TheLaserShop"));
         JTextField dbDriverField = new JTextField(ExchangeFactory.getPropLogEngine().getProps()
-                .getProperty("dbDriverName", "com.mysql.jdbc.Driver"));
+                .getProperty("dbDriverName", "org.apache.derby.jdbc.ClientDriver"));
         JTextField dbUserField = new JTextField(ExchangeFactory.getPropLogEngine().getProps()
                 .getProperty("dbUser", "root"));
         JPasswordField dbPasswordField = new JPasswordField();
@@ -156,6 +157,8 @@ public class TheLaserShop {
                         + dbConnectionField.getText() + ";"
                         + dbUserField.getText() + ";"
                         + new String(dbPasswordField.getPassword());
+                //imagedir
+                ExchangeFactory.getPropLogEngine().getProps().setProperty("imagedir", imageDirField.getText());
                 ExchangeFactory.getPropLogEngine().getProps().setProperty("JDBCconnection", dbConnectionField.getText());
                 ExchangeFactory.getPropLogEngine().getProps().setProperty("dbDriverName", dbDriverField.getText());
                 ExchangeFactory.getPropLogEngine().getProps().setProperty("dbUser", dbUserField.getText());
@@ -181,7 +184,7 @@ public class TheLaserShop {
     }
 
     public static void configureConnection() {
-        String cnctStr = serverSetup("Options");
+        String cnctStr = serverSetup("DB connection");
         if (cnctStr != null) {
             try {
                 if (ExchangeFactory.getProtocol().equals("rmi")) {

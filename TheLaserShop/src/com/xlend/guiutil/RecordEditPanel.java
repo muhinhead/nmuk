@@ -5,6 +5,7 @@
  */
 package com.xlend.guiutil;
 
+import com.xlend.EditFilePanel;
 import com.xlend.dbutil.ComboItem;
 import com.xlend.dbutil.ExchangeFactory;
 import com.xlend.orm.dbobject.DbObject;
@@ -17,6 +18,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.ParseException;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -305,6 +308,7 @@ public abstract class RecordEditPanel extends JPanel {
             setDbObject(LookupDialog.getExchanger().saveDbObject(dbOb));
             return true;
         } catch (Exception ex) {
+            Logger.getLogger(EditFilePanel.class.getName()).log(Level.SEVERE, null, ex);
             ExchangeFactory.getPropLogEngine().log(ex);
             GeneralUtils.errMessageBox(GeneralUtils.ERROR, ex.getMessage());
         }

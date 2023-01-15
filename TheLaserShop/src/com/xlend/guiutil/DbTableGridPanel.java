@@ -165,7 +165,7 @@ public class DbTableGridPanel extends JPanel {
         if (row >= 0 && row < getTableView().getRowCount()) {//&& row < tableView.getSelectedRow()) {
             String sid = //(String) 
                     getTableView().getValueAt(row, 0).toString();
-            return Integer.parseInt(sid);
+            return Integer.valueOf(sid);
         }
         return 0;
     }
