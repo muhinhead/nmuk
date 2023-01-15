@@ -25,7 +25,7 @@ create table mats.mattype
     primary key (mattypeID)
 );
 
-alter table mats.mattype add constraint uniq_name1 unique(name);
+alter table mats.mattype add constraint mats.uniq_name1 unique(name);
 
 create table mats.item 
 (
@@ -50,6 +50,25 @@ create table mats.income
     incoming int not null default 0,
     restAfterIncome int not null default 0,
     itemID int not null,
+    userID int not null,
     primary key (incomeID),
-    foreign key (itemID) references mats.item (itemID)
+    foreign key (itemID) references mats.item (itemID),
+    foreign key (userID) references mats.usr (userID)
 );
+
+create table mats.addfile
+(
+    addfileID int not null generated always as identity,
+    name varchar(45),
+    filetype varchar(45),
+    filebody blob,
+    description varchar(8192),
+    userID int,
+    itemID int,
+    incomeID int,
+    primary key (addfileID),
+    foreign key (userID) references mats.usr (userID),
+    foreign key (itemID) references mats.item (itemID),
+    foreign key (incomeID) references mats.income (incomeID)
+);
+
