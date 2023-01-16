@@ -28,7 +28,7 @@ import javax.swing.UIManager;
  */
 public class TheLaserShop {
 
-    public static final String defaultServerIP = "127.0.0.1";
+    public static final String defaultServerIP = "127.0.0.1"; //"18.208.137.87";
     private static IMessageSender exchanger;
     private static String homeDir;
     static String version = "0.1";
@@ -130,14 +130,15 @@ public class TheLaserShop {
         JSpinner portSpinner = new JSpinner(new SpinnerNumberModel(
                 vals.length > 1 ? new Integer(vals[1]) : 1099, 0, 65536, 1));
         JTextField dbConnectionField = new JTextField(ExchangeFactory.getPropLogEngine().getProps()
-                //jdbc:derby://localhost:1527//home/nick/Derby/TheLaserShop
-                .getProperty("JDBCconnection", "jdbc:derby://"
+//                .getProperty("JDBCconnection", "jdbc:derby://"
+                .getProperty("JDBCconnection", "jdbc:mysql://"
                         + defaultServerIP
-                        + "/TheLaserShop"));
+                        + "/materials"));
         JTextField dbDriverField = new JTextField(ExchangeFactory.getPropLogEngine().getProps()
-                .getProperty("dbDriverName", "org.apache.derby.jdbc.ClientDriver"));
+//                .getProperty("dbDriverName", "org.apache.derby.jdbc.ClientDriver"));
+                .getProperty("dbDriverName", "com.mysql.cj.jdbc.Driver"));
         JTextField dbUserField = new JTextField(ExchangeFactory.getPropLogEngine().getProps()
-                .getProperty("dbUser", "root"));
+                .getProperty("dbUser", "nick"));
         JPasswordField dbPasswordField = new JPasswordField();
 
         JComponent[] edits = new JComponent[]{

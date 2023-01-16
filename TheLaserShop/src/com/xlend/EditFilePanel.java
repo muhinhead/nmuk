@@ -47,7 +47,6 @@ public class EditFilePanel extends RecordEditPanel {
     private byte[] docBody;
     private static String docExtension = null;
     private static HashMap<String, String> hm = new HashMap<String, String>();
-    private org.apache.derby.client.am.ClientBlob blob;
 
     static {
         hm.put("userID", "User:");
@@ -248,14 +247,14 @@ public class EditFilePanel extends RecordEditPanel {
     @Override
     public void freeResources() {
         lookupAct = null;
-        try {
-            if (blob != null) {
-                blob.free();
-                blob = null;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(EditFilePanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            if (blob != null) {
+//                blob.free();
+//                blob = null;
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(EditFilePanel.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
 }

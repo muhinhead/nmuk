@@ -27,8 +27,8 @@ class UserLookupAction extends GeneralUtils.LookupAbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            LookupDialog ld = new LookupDialog("Пользователи",cBox,new UserGrid(getExchanger()),
-                new String[]{"firstName","secondName","lastName","login"});
+            LookupDialog ld = new LookupDialog("Users",cBox,new UserGrid(getExchanger()),
+                new String[]{"login","firstName","secondName","lastName"});
         } catch (RemoteException ex) {
             GeneralUtils.errMessageBox(GeneralUtils.ERROR, ex.getMessage());
         }

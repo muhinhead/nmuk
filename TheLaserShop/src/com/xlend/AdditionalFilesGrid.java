@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 public class AdditionalFilesGrid extends AbstractGridAdapter {
 
     private static HashMap<Integer, Integer> maxWidths = new HashMap<Integer, Integer>();
-    private static final String sp1 = "from Mats.addfile where ";
+    private static final String sp1 = "from mats_addfile where ";
 
     static {
         maxWidths.put(0, 50);

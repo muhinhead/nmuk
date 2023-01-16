@@ -33,10 +33,9 @@ public class UserGrid extends AbstractGridAdapter {
 
     public UserGrid(IMessageSender exchanger) throws RemoteException {
         super(exchanger, 
-//                "select * from mats.usr",
-                "select userID \"ID\", firstName \"First Name\", "
-                + "lastName \"Last Name\", login \"Login\" , case when isAdmin=1 then 'Yes' else 'No' end \"Superuser\" "
-                + "from mats.usr", 
+                "select userID \"ID\", login \"Login\" , firstName \"First Name\", "
+                + "lastName \"Last Name\", case when isAdmin=1 then 'Yes' else 'No' end \"Superuser\" "
+                + "from mats_usr", 
                 maxWidths, false);
     }
     

@@ -28,7 +28,7 @@ public class ExchangeFactory {
     //private static final String NO_ACCESS_TO_PROCEDURE_BODIESTRUE = "&noAccessToProcedureBodies=true";
     private static PropLogEngine propLogEngine = null;
     private static String[] fixLocalDBsqls = new String[]{ // TODO: here is a place for updating DDLs
-        "insert into mats.usr (login,password,isAdmin) values('admin','admin',1)"
+        "insert into mats_usr (login,password,isAdmin) values('admin','admin',1)"
     };
 
     public static String getRMIkey(String ipAddress, String mainClientClassName) {
@@ -46,15 +46,15 @@ public class ExchangeFactory {
             }
         }
         if (exchanger == null) {
-//            connectString = props.getProperty("JDBCconnection", "jdbc:mysql://localhost/insultes?useUnicode=true&characterEncoding=UTF8");
-            connectString = props.getProperty("JDBCconnection", "jdbc:derby://localhost:1527//home/nick/Derby/TheLaserShop");
+            connectString = props.getProperty("JDBCconnection", "jdbc:mysql://localhost/materials?useUnicode=true&characterEncoding=UTF8");
+//            connectString = props.getProperty("JDBCconnection", "jdbc:derby://localhost:1527//home/nick/Derby/TheLaserShop");
             //jdbc:derby://localhost:1527/orders
         }
         if (connectString.startsWith("jdbc:")) {
-            String dbUser = props.getProperty("dbUser", "root");
-            String dbPassword = props.getProperty("dbPasword", "root");
-//            String dbDriver = props.getProperty("dbDriverName", "com.mysql.jdbc.Driver");
-            String dbDriver = props.getProperty("dbDriverName", "org.apache.derby.jdbc.ClientDriver");
+            String dbUser = props.getProperty("dbUser", "nick");
+            String dbPassword = props.getProperty("dbPasword", "ghbdtnnt");
+            String dbDriver = props.getProperty("dbDriverName", "com.mysql.cj.jdbc.Driver");
+//            String dbDriver = props.getProperty("dbDriverName", "org.apache.derby.jdbc.ClientDriver");
             try {
                 exchanger = createJDBCexchanger(dbDriver, connectString, dbUser, dbPassword);
                 protocol = "jdbc";
@@ -89,7 +89,7 @@ public class ExchangeFactory {
         IMessageSender exchanger;
         DriverManager.registerDriver(
                 (java.sql.Driver) Class.forName(dbDriver).newInstance());
-        Connection connection = DriverManager.getConnection(connectString);//, dbUser, dbPassword);
+        Connection connection = DriverManager.getConnection(connectString, dbUser, dbPassword);
         connection.setAutoCommit(true);
         sqlBatch(fixLocalDBsqls, connection, false);
         exchanger = new DbClientDataSender(connection);

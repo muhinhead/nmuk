@@ -72,7 +72,7 @@ public class DbAssistant {
     }
 
     public static ComboItem[] loadUsers() {
-        return loadOnSelect("select userID,concat(firstName,' ',lastName) from mats.usr");
+        return loadOnSelect("select userID,concat(login,' (',firstName,' ',lastName.')') from mats_usr");
     }
     
 //    public static ComboItem[] loadPatients() {
